@@ -7,7 +7,7 @@ namespace MyStore.Application.Interfaces
 {
     public interface IProductService
     {
-        IEnumerable<ProductViewModel> GetProducts();
+        ProductViewModel GetProducts();
 
     }
 }
