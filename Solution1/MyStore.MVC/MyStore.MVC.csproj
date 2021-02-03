@@ -18,4 +18,8 @@
     <ProjectReference Include="..\MyStore.Infra.IoC\MyStore.Infra.IoC.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
 </Project>
