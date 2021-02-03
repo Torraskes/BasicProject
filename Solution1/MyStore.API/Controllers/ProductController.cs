@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MyStore.Application.Interfaces;
+using MyStore.Application.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +13,19 @@ namespace MyStore.API.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
+        private readonly IProductService _productService;
+
+        public ProductController(IProductService productService)
+        {
+            this._productService = productService;
+        }
+
+        [HttpPost]
+        public IActionResult Post([FromBody] ProductViewModel productViewModel)
+        {
+           
+            return Ok(productViewModel);
+        }
+
     }
 }

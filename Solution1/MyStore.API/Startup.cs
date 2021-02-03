@@ -2,10 +2,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
+using MyStore.Infra.Data.Context;
+using MyStore.Infra.IoC;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +29,22 @@ namespace MyStore.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<MyStoreDBContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("MystoreDBConection"));
+            }
+            );
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "MyStore API",                    
+                    Version = "v1"
+                }
+                );
+            });
             services.AddControllers();
+            RegisterServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,10 +61,20 @@ namespace MyStore.API
 
             app.UseAuthorization();
 
+            app.UseSwagger();
+            app.UseSwaggerUI(options=>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json","MyStore API v1");
+            });
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+        }
+        private static void RegisterServices(IServiceCollection services)
+        {
+            DependencyContainer.RegisterServices(services);
         }
     }
 }
