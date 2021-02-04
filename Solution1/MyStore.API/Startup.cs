@@ -34,6 +34,7 @@ namespace MyStore.API
                 options.UseSqlServer(Configuration.GetConnectionString("MystoreDBConection"));
             }
             );
+            //Swagger Configuration
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo
@@ -43,7 +44,19 @@ namespace MyStore.API
                 }
                 );
             });
+            //Cors configuration
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.AllowAnyOrigin();
+                    builder.AllowAnyHeader();
+                    builder.AllowAnyMethod();
+                });
+            });
+
             services.AddControllers();
+            //Add new IoC/ Dependency Injection
             RegisterServices(services);
         }
 
@@ -66,11 +79,12 @@ namespace MyStore.API
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json","MyStore API v1");
             });
-
+            app.UseCors();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
         }
         private static void RegisterServices(IServiceCollection services)
         {
