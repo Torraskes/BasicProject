@@ -16,11 +16,39 @@ namespace MyStore.Infra.Data.Repositories
             this._context = context;
         }
 
+        public Product Add(Product newProduct)
+        {
+            this._context.Add(newProduct);
+            this._context.SaveChanges();
+            return newProduct;
+        }
+
+        public Product Delete(int Id)
+        {
+            Product delPRoduct = this._context.Products.Find(Id);
+            this._context.Remove(delPRoduct);
+            this._context.SaveChanges();
+            return delPRoduct;
+
+        }
+
+        public Product GetProductById(int Id)
+        {
+            return this._context.Products.Find(Id);
+        }
+
         public IEnumerable<Product> GetProducts()
         {
             return _context.Products;
         }
 
-        //Rest to mimplement update, delete ,etc
+        public Product Update(Product upProduct)
+        {
+            var Product = this._context.Products.Attach(upProduct);
+            Product.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            this._context.SaveChanges();
+            return upProduct;
+        }
+        
     }
 }

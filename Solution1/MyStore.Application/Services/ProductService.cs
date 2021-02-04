@@ -15,6 +15,24 @@ namespace MyStore.Application.Services
         {
             this._productRepository = productRepository;
         }
+
+        public ProductViewModel AddProduct(ProductViewModel newProd)
+        {
+
+            return new ProductViewModel()
+            {
+                Product = this._productRepository.Add(newProd.Product)
+            };
+        }
+
+        public ProductViewModel DelProduct(int Id)
+        {
+            return new ProductViewModel()
+            {
+                Product = this._productRepository.Delete(Id)
+            };
+        }
+
         public ProductViewModel GetProducts()
         {
             return new ProductViewModel()
@@ -23,6 +41,23 @@ namespace MyStore.Application.Services
             };
         }
 
-        //We need to implement the rest of funtions like Update, DElete, etc
+        public ProductViewModel ProductByID(int Id)
+        {
+            return new ProductViewModel()
+            {
+                Product = this._productRepository.GetProductById(Id)
+            };
+        }
+
+        public ProductViewModel UpProduct(ProductViewModel upProd)
+        {
+            return new ProductViewModel()
+            {
+                Product = this._productRepository.Update(upProd.Product)
+            };
+        }
+
+        
+
     }
 }

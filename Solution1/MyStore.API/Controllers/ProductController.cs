@@ -20,11 +20,35 @@ namespace MyStore.API.Controllers
             this._productService = productService;
         }
 
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok(this._productService.GetProducts());
+        }
+
+        
+        [HttpGet("{id}")]
+        public IActionResult Get(int Id)
+        {
+            return Ok(this._productService.ProductByID(Id));
+        }
+        
         [HttpPost]
         public IActionResult Post([FromBody] ProductViewModel productViewModel)
         {
-           
-            return Ok(productViewModel);
+            return Ok(this._productService.AddProduct(productViewModel));
+        }
+
+        [HttpPut]
+        public IActionResult Put([FromBody] ProductViewModel productViewModel)
+        {
+            return Ok(this._productService.UpProduct(productViewModel));
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult delete(int Id)
+        {
+            return Ok(this._productService.DelProduct(Id));
         }
 
     }
