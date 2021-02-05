@@ -9,5 +9,10 @@ namespace MyStore.Application.Interfaces
     {
         GenericViewModel<T> GetObjects();
 
+        GenericViewModel<T> ObjectByID(int Id);
+        GenericViewModel<T> AddObject(GenericViewModel<T> newProd);
+        GenericViewModel<T> DelObject(int Id);
+        GenericViewModel<T> UpObject(GenericViewModel<T> newProd);
+
     }
 }

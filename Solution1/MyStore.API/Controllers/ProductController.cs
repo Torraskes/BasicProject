@@ -15,20 +15,19 @@ namespace MyStore.API.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private readonly IProductService _productService;
+        private readonly IProductService _productService;        
 
         public ProductController(IProductService productService)
         {
-            this._productService = productService;
+            this._productService = productService;            
         }
 
         [HttpGet]
         public IActionResult Get()
         {
             return Ok(this._productService.GetProducts());
-        }
+        }        
 
-        
         [HttpGet("{id}")]
         public IActionResult Get(int Id)
         {

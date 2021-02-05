@@ -18,12 +18,45 @@ namespace MyStore.Application.Services
         {
             this._genericRepository = genericRepository;
         }
+
+        public GenericViewModel<T> AddObject(GenericViewModel<T> newObject)
+        {
+            return new GenericViewModel<T>()
+            {
+                Object = this._genericRepository.Add(newObject.Object)
+            };
+        }
+
+        public GenericViewModel<T> DelObject(int Id)
+        {
+            return new GenericViewModel<T>()
+            {
+                Object = this._genericRepository.Delete(Id)
+            };
+        }
+
         public GenericViewModel<T> GetObjects()
         {
             return new GenericViewModel<T>()
             {
                 Objects = this._genericRepository.GetAll()
             };            
+        }
+
+        public GenericViewModel<T> ObjectByID(int Id)
+        {
+            return new GenericViewModel<T>()
+            {
+                Object = this._genericRepository.TGetBtID(Id)
+            };
+        }
+
+        public GenericViewModel<T> UpObject(GenericViewModel<T> upObject)
+        {
+            return new GenericViewModel<T>()
+            {
+                Object = this._genericRepository.Update(upObject.Object)
+            };
         }
     }
 }

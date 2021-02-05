@@ -2,6 +2,7 @@
 using MyStore.Application.Interfaces;
 using MyStore.Application.Services;
 using MyStore.Domain.Interfaces;
+using MyStore.Domain.Models;
 using MyStore.Infra.Data.Repositories;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,8 @@ namespace MyStore.Infra.IoC
             services.AddScoped<IProductRepository,ProductRepository>();
 
             //AddRest Respositories or create a Generic One
+            services.AddScoped<IGenericService<Product>, GenericService<Product>>();
+            services.AddScoped<IGenericRepository<Product>, GenericRepository<Product>>();            
         }
     }
 }
