@@ -1,3 +1,4 @@
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,6 +30,7 @@ namespace MyStore.MVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Conection With Databases
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("MyStoreIdentityConectionDB")));
@@ -43,6 +45,8 @@ namespace MyStore.MVC
             services.AddControllersWithViews();
             services.AddRazorPages();
 
+            
+            //Add new Dependency Injection 
             RegisterServices(services);
         }
 
