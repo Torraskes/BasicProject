@@ -1,3 +1,4 @@
+using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -69,6 +70,9 @@ namespace MyStore.API
                 options.Authority = "https://abgohedev.us.auth0.com/";
                 options.Audience = "https://localhost:5001";
             });
+
+            //MediarT
+            services.AddMediatR(typeof(Startup));
 
             //AutoMapper
             services.RegisterAutoMapper();

@@ -1,4 +1,5 @@
 
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -46,6 +47,9 @@ namespace MyStore.MVC
             services.AddControllersWithViews();
             services.AddRazorPages();
 
+
+            //MediatR
+            services.AddMediatR(typeof(Startup));
 
             //AutoMapper
             services.RegisterAutoMapper();
