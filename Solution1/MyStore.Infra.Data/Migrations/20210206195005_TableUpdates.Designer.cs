@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyStore.Infra.Data.Context;
 
 namespace MyStore.Infra.Data.Migrations
 {
     [DbContext(typeof(MyStoreDBContext))]
-    partial class MyStoreDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210206195005_TableUpdates")]
+    partial class TableUpdates
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
