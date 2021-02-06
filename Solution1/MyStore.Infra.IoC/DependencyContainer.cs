@@ -37,8 +37,11 @@ namespace MyStore.Infra.IoC
 
 
             //Add rest Respositories or create a Generic One
-            services.AddScoped<IGenericService<Product>, GenericService<Product>>();
-            services.AddScoped<IGenericRepository<Product>, GenericRepository<Product>>();
+            //services.AddScoped<IGenericService<Product>, GenericService<Product>>();
+            //services.AddScoped<IGenericRepository<Product>, GenericRepository<Product>>();
+
+            services.AddScoped(typeof(IGenericService<>), typeof(GenericService<>));
+            services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
 
 
             services.AddScoped<MyStoreDBContext>();
