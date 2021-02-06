@@ -44,8 +44,8 @@ namespace MyStore.Infra.Data.Repositories
 
         public T Update(T upObj)
         {
-            this.table.Attach(upObj);
-            this._context.Entry(upObj).State = EntityState.Modified;
+            var Obj = this.table.Attach(upObj);
+            Obj.State = EntityState.Modified;
             this._context.SaveChanges();
             return upObj;
         }
