@@ -21,11 +21,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyStore.Domain", "MyStore.D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyStore.Infra.Data", "MyStore.Infra.Data\MyStore.Infra.Data.csproj", "{EE454A57-2822-4FCE-A8CF-E2334CA4EAC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyStore.Application", "MyStore.Application\MyStore.Application.csproj", "{FAE890D8-D172-48F8-846F-C2C1430CFBA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyStore.Application", "MyStore.Application\MyStore.Application.csproj", "{FAE890D8-D172-48F8-846F-C2C1430CFBA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyStore.Infra.IoC", "MyStore.Infra.IoC\MyStore.Infra.IoC.csproj", "{A1AF9050-D8AB-4C76-8B99-7666A9BB1DB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyStore.Infra.IoC", "MyStore.Infra.IoC\MyStore.Infra.IoC.csproj", "{A1AF9050-D8AB-4C76-8B99-7666A9BB1DB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyStore.API", "MyStore.API\MyStore.API.csproj", "{C53CAF7D-AA5C-4A93-96DE-64D8780B90C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyStore.API", "MyStore.API\MyStore.API.csproj", "{C53CAF7D-AA5C-4A93-96DE-64D8780B90C3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra.Bus", "Infra.Bus", "{A79C03BE-D58E-40EE-9E86-70B75BA81B7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
