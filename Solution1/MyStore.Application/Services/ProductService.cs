@@ -2,6 +2,8 @@
 using AutoMapper.QueryableExtensions;
 using MyStore.Application.Interfaces;
 using MyStore.Application.ViewModels;
+using MyStore.Domain.Commands.Product;
+using MyStore.Domain.Core.Bus;
 using MyStore.Domain.Interfaces;
 using MyStore.Domain.Models;
 using System;
@@ -12,19 +14,28 @@ namespace MyStore.Application.Services
 {
     public class ProductService : IProductService
     {
-        private IProductRepository _productRepository;
+        private readonly IProductRepository _productRepository;
+        private readonly IMediatorHandler _bus;
         private IMapper _autoMapper;
 
-        public ProductService(IProductRepository productRepository, IMapper autoMapper)
+        public ProductService(IProductRepository productRepository, IMediatorHandler bus, IMapper autoMapper)
         {
             this._productRepository = productRepository;
+            this._bus = bus;
             this._autoMapper = autoMapper;
         }
 
         public ProductViewModel AddProduct(ProductViewModel newProd)
         {
-
-            return this._autoMapper.Map<ProductViewModel>(this._productRepository.Add(this._autoMapper.Map<Product>(newProd)));
+            var addingNewProduct = new CreateProductCommand(
+                    newProd.SKU,
+                    newProd.Name,
+                    newProd.Cost,
+                    newProd.InExistance,
+                    newProd.Brand
+                );
+            this._bus.SendCommand(addingNewProduct);
+            return newProd;
             
         }
 
