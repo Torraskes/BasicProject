@@ -21,9 +21,8 @@ namespace MyStore.MVC.Controllers
 
 
         public IActionResult Index()
-        {
-            ProductViewModel model = this._productService.GetProducts();
-            return View(model);
+        {            
+            return View(this._productService.GetProducts());
         }
     }
 }

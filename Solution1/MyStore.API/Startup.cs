@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using MyStore.API.Configurations;
 using MyStore.Infra.Data.Context;
 using MyStore.Infra.IoC;
 using System;
@@ -68,6 +69,10 @@ namespace MyStore.API
                 options.Authority = "https://abgohedev.us.auth0.com/";
                 options.Audience = "https://localhost:5001";
             });
+
+            //AutoMapper
+            services.RegisterAutoMapper();
+
             //Add new IoC/ Dependency Injection
             RegisterServices(services);
         }

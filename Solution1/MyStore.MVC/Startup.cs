@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MyStore.Infra.Data.Context;
 using MyStore.Infra.IoC;
+using MyStore.MVC.Configurations;
 using MyStore.MVC.Data;
 using System;
 using System.Collections.Generic;
@@ -45,7 +46,10 @@ namespace MyStore.MVC
             services.AddControllersWithViews();
             services.AddRazorPages();
 
-            
+
+            //AutoMapper
+            services.RegisterAutoMapper();
+
             //Add new Dependency Injection 
             RegisterServices(services);
         }

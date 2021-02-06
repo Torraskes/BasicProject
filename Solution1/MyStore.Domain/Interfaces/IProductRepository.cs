@@ -1,13 +1,14 @@
 ﻿using MyStore.Domain.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace MyStore.Domain.Interfaces
 {
     public interface IProductRepository
     {
-        IEnumerable<Product> GetProducts();
+        IQueryable<Product> GetProducts();
         Product GetProductById(int Id);
         Product Add(Product newProduct);
         Product Delete(int Id);

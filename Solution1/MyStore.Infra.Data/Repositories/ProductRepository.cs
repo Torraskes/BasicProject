@@ -3,6 +3,7 @@ using MyStore.Domain.Models;
 using MyStore.Infra.Data.Context;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace MyStore.Infra.Data.Repositories
@@ -37,7 +38,7 @@ namespace MyStore.Infra.Data.Repositories
             return this._context.Products.Find(Id);
         }
 
-        public IEnumerable<Product> GetProducts()
+        public IQueryable<Product> GetProducts()
         {
             return _context.Products;
         }
