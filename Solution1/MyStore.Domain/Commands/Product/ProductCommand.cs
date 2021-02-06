@@ -7,6 +7,7 @@ namespace MyStore.Domain.Commands.Product
 {
     public abstract class ProductCommand : Command
     {
+        public int Id { get; protected set; }
         public string SKU { get; protected set; }
         public string Name { get; protected set; }
         public float Cost { get; protected set; }

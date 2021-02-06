@@ -11,7 +11,7 @@ namespace MyStore.Application.AutoMapper
     {
         public ProductDomainToViewModelProfile()
         {
-            CreateMap<Product, ProductViewModel>();
+            CreateMap<Product, ProductViewModel>();            
         }
     }
 }

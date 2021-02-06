@@ -10,7 +10,7 @@ namespace MyStore.Application.Interfaces
         IEnumerable<ProductViewModel> GetProducts();
         ProductViewModel ProductByID(int Id);
         ProductViewModel AddProduct(ProductViewModel newProd);
-        ProductViewModel DelProduct(int Id);
+        void DelProduct(int Id);
         ProductViewModel UpProduct(ProductViewModel newProd);
 
     }

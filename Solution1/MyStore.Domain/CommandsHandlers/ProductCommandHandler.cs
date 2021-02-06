@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 namespace MyStore.Domain.CommandsHandlers
 {
     public class ProductCommandHandler : IRequestHandler<CreateProductCommand, bool>
+                                        , IRequestHandler<UpdateProductCommand, bool>
+                                        , IRequestHandler<DeleteProductCommand, bool>
     {
         private readonly IProductRepository _productRepository;
 
@@ -31,6 +33,27 @@ namespace MyStore.Domain.CommandsHandlers
                 Brand = request.Brand               
             };
             this._productRepository.Add(newproduct);
+            return Task.FromResult(true);
+        }
+
+        public Task<bool> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
+        {
+            var newproduct = new Product()
+            {
+                Id = request.Id,
+                SKU = request.SKU,
+                Name = request.Name,
+                Cost = request.Cost,
+                InExistance = request.InExistance,
+                Brand = request.Brand
+            };
+            this._productRepository.Update(newproduct);
+            return Task.FromResult(true);
+        }
+
+        public Task<bool> Handle(DeleteProductCommand request, CancellationToken cancellationToken)
+        {            
+            this._productRepository.Delete(request.Id);
             return Task.FromResult(true);
         }
     }

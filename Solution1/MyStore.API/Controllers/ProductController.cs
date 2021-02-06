@@ -50,7 +50,8 @@ namespace MyStore.API.Controllers
         [HttpDelete("{id}")]
         public IActionResult delete(int Id)
         {
-            return Ok(this._productService.DelProduct(Id));
+            this._productService.DelProduct(Id);
+            return Ok();
         }
 
     }

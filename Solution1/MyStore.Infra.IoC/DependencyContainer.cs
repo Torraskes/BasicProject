@@ -26,6 +26,8 @@ namespace MyStore.Infra.IoC
 
             //Domain Handlers
             services.AddScoped<IRequestHandler<CreateProductCommand,bool>,ProductCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteProductCommand, bool>, ProductCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateProductCommand, bool>, ProductCommandHandler>();
 
             //Application Layer
             services.AddScoped<IProductService, ProductService>();

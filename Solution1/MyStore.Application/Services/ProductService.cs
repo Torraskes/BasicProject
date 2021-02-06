@@ -26,23 +26,14 @@ namespace MyStore.Application.Services
         }
 
         public ProductViewModel AddProduct(ProductViewModel newProd)
-        {
-            var addingNewProduct = new CreateProductCommand(
-                    newProd.SKU,
-                    newProd.Name,
-                    newProd.Cost,
-                    newProd.InExistance,
-                    newProd.Brand
-                );
-            this._bus.SendCommand(addingNewProduct);
-            return newProd;
-            
+        {            
+            this._bus.SendCommand(this._autoMapper.Map<CreateProductCommand>(newProd));
+            return newProd;            
         }
 
-        public ProductViewModel DelProduct(int Id)
+        public void DelProduct(int id)
         {
-            return this._autoMapper.Map<ProductViewModel>(this._productRepository.Delete(Id));
-           
+            this._bus.SendCommand(this._autoMapper.Map<DeleteProductCommand>(new ProductViewModel() { Id = id }));                  
         }
 
         public IEnumerable<ProductViewModel> GetProducts()
@@ -52,12 +43,14 @@ namespace MyStore.Application.Services
 
         public ProductViewModel ProductByID(int Id)
         {
+
             return this._autoMapper.Map<ProductViewModel>(this._productRepository.GetProductById(Id));
         }
 
         public ProductViewModel UpProduct(ProductViewModel upProd)
         {
-            return this._autoMapper.Map<ProductViewModel>(this._productRepository.Update(this._autoMapper.Map<Product>(upProd)));
+            this._bus.SendCommand(this._autoMapper.Map<UpdateProductCommand>(upProd));
+            return upProd;
         }
 
         
