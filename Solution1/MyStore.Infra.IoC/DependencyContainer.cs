@@ -25,7 +25,7 @@ namespace MyStore.Infra.IoC
             services.AddScoped<IMediatorHandler, InMemoryBus>();
 
             //Domain Handlers
-            services.AddScoped<IRequestHandler<CreateProductCommand,bool>,ProductCommandHandler>();
+            services.AddScoped<IRequestHandler<CreateProductCommand, bool>,ProductCommandHandler>();
             services.AddScoped<IRequestHandler<DeleteProductCommand, bool>, ProductCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateProductCommand, bool>, ProductCommandHandler>();
 
